@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inscrição — CBS e IBS | GETIDP</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #1e2d5a;
+      --navy-mid: #2e4080;
+      --blue: #3b52a0;
+      --blue-light: #e8ecf8;
+      --gold: #c8a84b;
+      --gold-light: #f5f0e1;
+      --white: #ffffff;
+      --gray-100: #f7f8fc;
+      --gray-200: #eceef5;
+      --gray-400: #9da3bb;
+      --gray-700: #3d4460;
+      --text: #1a1f36;
+      --danger: #c0392b;
+      --success: #1a7a4a;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--gray-100);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 2rem 1rem 4rem;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 560px;
+    }
+
+    /* Header */
+    .header {
+      background: var(--navy);
+      border-radius: 16px 16px 0 0;
+      padding: 2.5rem 2rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      background: rgba(200,168,75,0.08);
+    }
+
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: -60px; left: -20px;
+      width: 160px; height: 160px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(200,168,75,0.4);
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-bottom: 1rem;
+    }
+
+    .header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.3;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+
+    .header-desc {
+      font-size: 13px;
+      color: rgba(255,255,255,0.72);
+      line-height: 1.65;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    .header-desc strong {
+      color: rgba(255,255,255,0.92);
+      font-weight: 500;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      position: relative;
+    }
+
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.85);
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 5px 10px;
+      border-radius: 20px;
+    }
+
+    .meta-item svg {
+      width: 13px; height: 13px;
+      stroke: var(--gold);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex-shrink: 0;
+    }
+
+    /* Form card */
+    .card {
+      background: var(--white);
+      border-radius: 0 0 16px 16px;
+      padding: 2rem;
+      border: 1px solid var(--gray-200);
+      border-top: none;
+    }
+
+    .form-group {
+      margin-bottom: 1.4rem;
+    }
+
+    label {
+      display: block;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--gray-700);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 7px;
+    }
+
+    .required {
+      color: var(--danger);
+      margin-left: 2px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    select {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1.5px solid var(--gray-200);
+      border-radius: 8px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      color: var(--text);
+      background: var(--white);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      appearance: none;
+      -webkit-appearance: none;
+      outline: none;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    select:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(59,82,160,0.1);
+    }
+
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%239da3bb' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 36px;
+      cursor: pointer;
+    }
+
+    /* Radio toggle */
+    .radio-group {
+      display: flex;
+      gap: 10px;
+    }
+
+    .radio-option {
+      flex: 1;
+      position: relative;
+    }
+
+    .radio-option input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      width: 0; height: 0;
+    }
+
+    .radio-option label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px;
+      border: 1.5px solid var(--gray-200);
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 400;
+      text-transform: none;
+      letter-spacing: 0;
+      color: var(--gray-700);
+      transition: all 0.18s;
+      user-select: none;
+    }
+
+    .radio-option input[type="radio"]:checked + label {
+      border-color: var(--blue);
+      background: var(--blue-light);
+      color: var(--navy);
+      font-weight: 500;
+    }
+
+    .radio-dot {
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      border: 2px solid var(--gray-400);
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.18s;
+      flex-shrink: 0;
+    }
+
+    .radio-option input[type="radio"]:checked + label .radio-dot {
+      border-color: var(--blue);
+      background: var(--blue);
+    }
+
+    .radio-option input[type="radio"]:checked + label .radio-dot::after {
+      content: '';
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: white;
+    }
+
+    /* RA field */
+    #campo-ra {
+      display: none;
+      overflow: hidden;
+      transition: all 0.25s ease;
+    }
+
+    #campo-ra.visible {
+      display: block;
+      animation: slideDown 0.25s ease;
+    }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Divider */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--gray-200);
+      margin: 1.75rem 0;
+    }
+
+    /* Feedback */
+    .feedback {
+      display: none;
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 13.5px;
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+
+    .feedback.error {
+      background: #fdf0ef;
+      border: 1px solid #f5c6c3;
+      color: var(--danger);
+    }
+
+    .feedback.success {
+      background: #eaf7f0;
+      border: 1px solid #a3dfc0;
+      color: var(--success);
+    }
+
+    /* Submit button */
+    .btn-submit {
+      width: 100%;
+      padding: 13px;
+      background: var(--navy);
+      color: var(--white);
+      border: none;
+      border-radius: 8px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      letter-spacing: 0.02em;
+    }
+
+    .btn-submit:hover { background: var(--navy-mid); }
+    .btn-submit:active { transform: scale(0.99); }
+    .btn-submit:disabled { background: var(--gray-400); cursor: not-allowed; }
+
+    .footer-note {
+      text-align: center;
+      font-size: 11.5px;
+      color: var(--gray-400);
+      margin-top: 1rem;
+    }
+
+    /* Speakers */
+    .speakers {
+      margin-top: 1.5rem;
+      background: var(--gray-100);
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+    }
+
+    .speakers-title {
+      font-size: 10px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--gray-400);
+      margin-bottom: 12px;
+    }
+
+    .speakers-list {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .speaker {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .avatar {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: var(--navy);
+      color: white;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px;
+      font-weight: 500;
+      flex-shrink: 0;
+    }
+
+    .speaker-info p { margin: 0; }
+    .speaker-name { font-size: 12px; font-weight: 500; color: var(--gray-700); }
+    .speaker-role { font-size: 11px; color: var(--gray-400); }
+
+    @media (max-width: 480px) {
+      .header { padding: 2rem 1.5rem 1.75rem; }
+      .card { padding: 1.5rem; }
+      .header h1 { font-size: 1.35rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <div class="tag">GETIDP — Inscrição gratuita</div>
+    <h1>CBS e IBS: Desafios Regulatórios e Impactos na Tributação Indireta Brasileira</h1>
+    <p class="header-desc">
+      O painel reunirá <strong>Paulo Duarte Filho</strong>, <strong>Ivan Allegretti</strong> e <strong>Lilianne Bontempo</strong> para debater os impactos práticos da reforma tributária no mercado e nos tribunais durante e após o período de transição. Uma oportunidade imperdível de aprofundamento técnico sobre uma das maiores transformações do Direito Tributário brasileiro.
+    </p>
+    <div class="meta">
+      <div class="meta-item">
+        <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        26 de maio de 2026
+      </div>
+      <div class="meta-item">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        19h00
+      </div>
+      <div class="meta-item">
+        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        IDP Sul Brasília — Sala 302
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <!-- ⚠️ SUBSTITUA O ACTION ABAIXO PELO SEU ENDPOINT DO FORMSPREE -->
+    <form id="form-inscricao" action="https://formspree.io/f/xdajenjz" method="POST">
+
+      <div class="form-group">
+        <label for="nome">Nome completo <span class="required">*</span></label>
+        <input type="text" id="nome" name="nome" placeholder="Seu nome completo" autocomplete="name" />
+      </div>
+
+      <div class="form-group">
+        <label>Você é aluno(a) do IDP? <span class="required">*</span></label>
+        <div class="radio-group">
+          <div class="radio-option">
+            <input type="radio" id="aluno-sim" name="aluno_idp" value="Sim" onchange="toggleRA()" />
+            <label for="aluno-sim">
+              <span class="radio-dot"></span> Sim
+            </label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" id="aluno-nao" name="aluno_idp" value="Não" onchange="toggleRA()" />
+            <label for="aluno-nao">
+              <span class="radio-dot"></span> Não
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group" id="campo-ra">
+        <label for="ra">Número de RA <span class="required">*</span></label>
+        <input type="text" id="ra" name="ra" placeholder="Ex: 2024001234" />
+      </div>
+
+      <div class="form-group">
+        <label for="origem">Como ficou sabendo do evento? <span class="required">*</span></label>
+        <select id="origem" name="como_soube">
+          <option value="">Selecione...</option>
+          <option>Instagram / redes sociais</option>
+          <option>E-mail / divulgação direta</option>
+          <option>IDP / site institucional</option>
+          <option>Indicação de colega</option>
+          <option>Outro</option>
+        </select>
+      </div>
+
+      <hr class="divider" />
+
+      <div class="feedback" id="feedback"></div>
+
+      <button type="submit" class="btn-submit" id="btn-submit">
+        Confirmar inscrição
+      </button>
+
+      <p class="footer-note">Evento presencial e gratuito — vagas limitadas</p>
+
+    </form>
+
+    <div class="speakers">
+      <p class="speakers-title">Palestrantes</p>
+      <div class="speakers-list">
+        <div class="speaker">
+          <div class="avatar">PD</div>
+          <div class="speaker-info">
+            <p class="speaker-name">Paulo Duarte Filho</p>
+            <p class="speaker-role">Stocche Forbes</p>
+          </div>
+        </div>
+        <div class="speaker">
+          <div class="avatar">IA</div>
+          <div class="speaker-info">
+            <p class="speaker-name">Ivan Allegretti</p>
+            <p class="speaker-role">Advogado · IDP</p>
+          </div>
+        </div>
+        <div class="speaker">
+          <div class="avatar">LB</div>
+          <div class="speaker-info">
+            <p class="speaker-name">Lilianne Bontempo</p>
+            <p class="speaker-role">Machado Meyer</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function toggleRA() {
+    const val = document.querySelector('input[name="aluno_idp"]:checked')?.value;
+    const campo = document.getElementById('campo-ra');
+    if (val === 'Sim') {
+      campo.classList.add('visible');
+    } else {
+      campo.classList.remove('visible');
+      document.getElementById('ra').value = '';
+    }
+  }
+
+  document.getElementById('form-inscricao').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const nome = document.getElementById('nome').value.trim();
+    const aluno = document.querySelector('input[name="aluno_idp"]:checked')?.value;
+    const ra = document.getElementById('ra').value.trim();
+    const origem = document.getElementById('origem').value;
+    const feedback = document.getElementById('feedback');
+    const btn = document.getElementById('btn-submit');
+
+    feedback.className = 'feedback';
+    feedback.style.display = 'none';
+
+    if (!nome) { mostrarErro('Por favor, informe seu nome completo.'); return; }
+    if (!aluno) { mostrarErro('Por favor, indique se você é aluno(a) do IDP.'); return; }
+    if (aluno === 'Sim' && !ra) { mostrarErro('Por favor, informe seu número de RA.'); return; }
+    if (!origem) { mostrarErro('Por favor, indique como ficou sabendo do evento.'); return; }
+
+    btn.disabled = true;
+    btn.textContent = 'Enviando...';
+
+    try {
+      const res = await fetch(this.action, {
+        method: 'POST',
+        body: new FormData(this),
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (res.ok) {
+        feedback.className = 'feedback success';
+        feedback.style.display = 'block';
+        feedback.textContent = '✓ Inscrição confirmada! Até dia 26 de maio.';
+        btn.textContent = 'Inscrito(a) ✓';
+        btn.style.background = '#1a7a4a';
+        this.reset();
+        document.getElementById('campo-ra').classList.remove('visible');
+      } else {
+        throw new Error();
+      }
+    } catch {
+      btn.disabled = false;
+      btn.textContent = 'Confirmar inscrição';
+      mostrarErro('Erro ao enviar. Tente novamente ou entre em contato com o GETIDP.');
+    }
+  });
+
+  function mostrarErro(msg) {
+    const feedback = document.getElementById('feedback');
+    feedback.className = 'feedback error';
+    feedback.style.display = 'block';
+    feedback.textContent = msg;
+  }
+</script>
+</body>
+</html>
